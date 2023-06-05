@@ -21,3 +21,10 @@ class RegisterForm(FlaskForm):
 
     #submit button
     submit = SubmitField("Register")
+    
+# this is the search form
+class SearchForm(FlaskForm):
+    keyword = StringField('Search Event Name', validators=[InputRequired()])
+
+    #submit button
+    submit = SubmitField('Search')
