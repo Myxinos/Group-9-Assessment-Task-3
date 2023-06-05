@@ -8,27 +8,17 @@
 
         <!-- Contains the main content of the website, divided into sections -->
         <main>
-            <form method="POST" class="mb-4">
+            <form action="{{ url_for('main.search_event') }}" method="get" class="mb-4">
                 {{ form.csrf_token }}
                 <div class="form-row align-items-center">
                     <div class="col-sm-9">
-                        {{ form.keyword.label(class="sr-only") }}
-                        {{ form.keyword(class="form-control form-control-lg", placeholder="Search event...") }}
+                        {{ render_field(form.keyword, class="form-control form-control-lg", placeholder="Search event...") }}
                     </div>
                     <div class="col-auto">
-                        {{ form.submit(class="btn btn-primary btn-lg") }}
+                        {{ render_field(form.submit, class="btn btn-primary btn-lg") }}
                     </div>
                 </div>
             </form>
-
-            {% if results %}
-            <h2>Event Results:</h2>
-            <ul>
-            {% for result in results %}
-            <li><a href="{{ url_for('event_detail', event_name=result.name) }}">{{ result.name }}</a></li>
-            {% endfor %}
-            </ul>
-            {% endif %}
 
             <section id="What's On" class="whatson">
 
