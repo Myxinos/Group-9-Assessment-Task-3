@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template,redirect,url_for
 from .forms import SearchForm
+from .models import search_event_by_keyword
 
 bp = Blueprint('main', __name__)
 
