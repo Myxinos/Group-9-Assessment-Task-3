@@ -4,12 +4,17 @@ from .forms import SearchForm
 bp = Blueprint('main', __name__)
 
 
-@bp.route('/', methods=['GET', 'POST'])
+@bp.route('/', methods=['GET'])
 def index():
     form = SearchForm()
+    return render_template('index.html',form=form)
+
+@bp.route('/search_event', methods=['GET'])
+def search_event():
+    form = SearchForm()
     if form.validate_on_submit():
-        event_name = form.event_name.data
-        result = search_by_event_name(event_name)
-        if result:
-            return redirect(url_for('main.event_detail', event_name=event_name))
-    return render_template('index.html', form=form)
+        keyword = form.keyword.data
+        event = search_event_by_keyword(keyword)
+        if event:
+            return render_template('event_detail.html', event=event)
+    return redirect(url_for('bp.index'))
