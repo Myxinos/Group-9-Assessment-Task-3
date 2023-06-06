@@ -139,14 +139,12 @@
             </section>
 
 
-            <section id="Category" class="category">
-
+<section id="Category" class="category">
                 <div class="category-heading">
                     <h1>Category</h1>
-
                 </div>
 
-
+                <a href="{{ url_for('bp.category', category_name='Classical') }}">
                 <article class="whatson-event">
                     <img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*mixpt3aTomNCPC2-cBlmIw.jpeg"
                         alt="Classical" style="width:400px;height:300px;">
@@ -158,6 +156,7 @@
                     </div>
                 </article>
 
+                <a href="{{ url_for('bp.category', category_name='Rock') }}"></a>
                 <article class="whatson-event">
                     <img src="https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                         alt="Rock " style=" width:400px;height:300px;">
@@ -167,14 +166,10 @@
                     </div>
                 </article>
 
+                <a href="{{ url_for('bp.category', category_name='Electronic') }}"></a>
                 <article class="whatson-event">
-
-
-
                     <img src="https://spillmagazine.com/wp-content/uploads/2018/06/Electronic-Music.jpg"
                         alt="Electronic" style="width:400px;height:300px;">
-
-
                     <div>
                         <h3>Electronic</h3>
                         <p></p>
