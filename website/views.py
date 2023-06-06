@@ -19,3 +19,8 @@ def search_event():
         if event:
             return render_template('event_detail.html', event=event)
     return redirect(url_for('bp.index'))
+
+@bp.route('/category/<category_name>', methods=['GET'])
+def category(category_name):
+    events = Event.query.filter_by(category=category_name).all()
+    return render_template('category.html', events=events)
