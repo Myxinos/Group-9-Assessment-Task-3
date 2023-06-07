@@ -3,12 +3,12 @@ from datetime import datetime
 from flask import session
 from sqlalchemy import Column, Integer, String, Float, Text
 from flask_sqlalchemy import SQLAlchemy as _SQLAlchemy, BaseQuery
-from contextlib import contextmanager
+
 
 
 class SQLAlchemy(_SQLAlchemy):
 
-    @contextmanager
+    
     def auto_commit(self):
         try:
             yield
