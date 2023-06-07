@@ -14,9 +14,9 @@
 
 <body>
 
-    <div id="wrapper">
-        <!-- Contains the heading, navigation and banner image -->
-        <header>
+<div id="wrapper">
+<!-- Contains the heading, navigation and banner image -->
+    <header>
             <div id="navigationbar">
                 <div id="websitename">
                     <h1 style="margin: 0;padding: 1rem 0; text-align: center;font-size: 100px;">ALL FOR MUSIC</h1>
@@ -46,144 +46,149 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="./Booking History.html">Booking History</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="./signin.html">Sign In or Register</a>
-                            </li>
                         </ul>
 
                     </div>
                 </nav>
             </div>
-        </header>
+    </header>
+</div>
 
-        <main>
-            <section id="Create An Event" class="createanevent">
+<main>
+    <section id="Create An Event" class="createanevent">
 
-                <div class="createanevent-heading">
-                    <h1>Create An Event</h1>
-                </div>
-                <form>
-                    <div class="container">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-10 align-self-center">
-                                    <article class="whatson-event">
+        <div class="createanevent-heading">
+            <h1>Create An Event</h1>
+        </div>
 
+        <form>
+            <div class="container">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-10 align-self-center">
+                            <article class="whatson-event">
+                                <h3 style="font-size:150%;">Basic Information</h3>
+                                    <div class="form-group">
+                                        <label for="eventName">Event Name: </label>
+                                        <input class="form-control" type="text" id="Event_Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="eventImage">Event Image: </label>
+                                        <input class="form-control" type="file" id="Event_Image">
+                                    </div>
 
-                                        <h3 style="font-size:150%;">Basic Information</h3>
-                                        <div class="form-group">
-                                            <label for="eventName">Event Name: </label>
-                                            <input class="form-control" type="text" id="eventName">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="eventImage">Event Image: </label>
-                                            <input class="form-control" type="file" id="eventImage">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="eventOrganizer">Event Organizer: </label>
-                                            <input class="form-control" type="text" id="eventOrganizer">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="category">Category: </label>
-                                            <input class="form-control" type="text" id="category">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="musician">Musician: </label>
-                                            <input class="form-control" type="text" id="musician">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="tags">Tags: </label>
-                                            <input class="form-control" type="text" id="tags">
-                                        </div>
-                                    </article>
+                                <div class="form-group">
+                                    <label for="eventOrganizer">Event Organizer: </label>
+                                    <input class="form-control" type="text" id="Event_Organizer">
                                 </div>
 
-                            </div>
-
-                        </div>
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-10 align-self-center">
-
-                                    <article class="whatson-event">
-
-                                        <h3 style="font-size:150%;">Time and Date</h3>
-                                        <div class="form-group">
-                                            <label for="eventDate">Event Date: </label>
-                                            <input class="form-control" type="date" id="eventDate">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="startTime">Start Time: </label>
-                                            <input class="form-control" type="time" id="startTime">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="endTime">End Time: </label>
-                                            <input class="form-control" type="time" id="endTime">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="timeZone">Timezone: </label>
-                                            <input class="form-control" type="text" id="timeZone">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="language">Event Language: </label>
-                                            <input class="form-control" type="text" id="language">
-                                        </div>
-
-
-
-                                    </article>
+                                <div class="form-group">
+                                    <label for="category">Category: </label>
+                                    <input class="form-control" type="text" id="Category">
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-10 align-self-center">
-
-                                    <article class="whatson-event">
-
-                                        <h3 style="font-size:150%;">Location</h3>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected>Select Location</option>
-                                            <option value="1">Venue</option>
-                                            <option value="2">Online Event</option>
-                                            <option value="3">To be announced</option>
-                                        </select>
-                                        <div class="form-group">
-                                            <label for="location">Venue Location: </label>
-                                            <input class="form-control" type="text" id="location">
-                                        </div>
-                                    </article>
+                                <div class="form-group">
+                                    <label for="musician">Musician: </label>
+                                    <input class="form-control" type="text" id="Musician">
                                 </div>
-                            </div>
-                        </div>
-                        <div class="container">
-                            <div class="row justify-content-center p-4">
-                                <div class="col-10">
-                                    <button type="submit" class="btn btn-danger w-100">Create</button>
-                                </div>
-                            </div>
 
+                                <div class="form-group">
+                                    <label for="tags">Tags: </label>
+                                    <input class="form-control" type="text" id="Tags">
+                                </div>
+                
+                            </article>
                         </div>
 
                     </div>
-
-                </form>
-
-            </section>
-            <section id="Contact Us" class="contactus">
-                <div class="contactus-heading">
-                    <h1>Contact Us</h1>
                 </div>
-                <article>
-                    <img src="https://play.tennis.com.au/Library/redheadtennisclub?command=Proxy&lang=en&type=Images&currentFolder=%2Fcoaching%2F&hash=665b8e01e64a6961a689712a1550ea064f49e224&fileName=contact-us-1908762__340.png"
-                        alt="Contact Us" style="width:400px;height:300px;object-fit: contain;">
-                    <div>
+
+                <div class="container">     
+                    <div class="row justify-content-center">
+                        <div class="col-10 align-self-center">
+                            <article class="whatson-event">
+                                <h3 style="font-size:150%;">Time and Date</h3>
+
+                                <div class="form-group">
+                                    <label for="eventDate">Event Date: </label>
+                                    <input class="form-control" type="date" id="Event_Date">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="startTime">Start Time: </label>
+                                    <input class="form-control" type="time" id="Start_Time">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="endTime">End Time: </label>
+                                    <input class="form-control" type="time" id="End_Time">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="timeZone">Timezone: </label>
+                                    <input class="form-control" type="text" id="Timezone">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="language">Event Language: </label>
+                                    <input class="form-control" type="text" id="Event_Language">
+                                </div>
+                            </article>
+
+                        </div>
                     </div>
-                </article>
-            </section>
-        </main>
+                </div>
+            
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-10 align-self-center">
+                            <article class="whatson-event">
+                                <h3 style="font-size:150%;">Location</h3>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Select Location</option>
+                                    <option value="1">Venue</option>
+                                    <option value="2">Online Event</option>
+                                    <option value="3">To be announced</option>
+                                </select>
+                                    <div class="form-group">
+                                        <label for="location">Venue Location: </label>
+                                        <input class="form-control" type="text" id="Venue_Location">
+                                    </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                    
+                <div class="container">            
+                    <div class="row justify-content-center p-4">      
+                        <div class="col-10">    
+                            <button type="submit" class="btn btn-danger w-100">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+    
+
+
+
+    </section>
+        <section id="Contact Us" class="contactus">
+            <div class="contactus-heading">
+                <h1>Contact Us</h1>
+            </div>
+            <article>
+                <img src="https://play.tennis.com.au/Library/redheadtennisclub?command=Proxy&lang=en&type=Images&currentFolder=%2Fcoaching%2F&hash=665b8e01e64a6961a689712a1550ea064f49e224&fileName=contact-us-1908762__340.png"
+                    alt="Contact Us" style="width:400px;height:300px;object-fit: contain;">
+                <div>
+                </div>
+            </article>
+        </section>
+</main>
+
+
         <!-- Footer of the website -->
         <footer>
             <div>
