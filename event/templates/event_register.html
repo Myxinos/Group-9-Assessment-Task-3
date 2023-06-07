@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Register</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Font Icon -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='fonts/material-icon/css/material-design-iconic-font.min.css') }}">
+
+        <!-- Main css -->
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style_form.css') }}">
+        <script src="https://kit.fontawesome.com/118a03026f.js" crossorigin="anonymous"></script>
+    </head>
+
+  <div id="wrapper">
+        <!-- Contains the heading, navigation and banner image -->
+        <header>
+            <div id="navigationbar">
+                <div id="websitename">
+                    <h1 style="margin: 0;padding: 1rem 0; text-align: center;font-size: 100px;">ALL FOR MUSIC</h1>
+                </div>
+                <!-- <nav id="navigationmenu">
+                    <ul id="navigationlist">
+                        <li class="active">
+                            <a href="#Home">Home</a>
+                        </li>
+                        <li>
+                            <a href="#What's On">What's On</a>
+                        </li>
+                        <li>
+                            <a href="#Upcoming">Upcoming</a>
+                        </li>
+                        <li>
+                            <a href="#Category">Category</a>
+                        </li>
+                        <li>
+                            <a href="#Contact Us">Contact Us</a>
+                        </li>
+                        <li>
+                            <a href="#Create an Event">Create an Event</a>
+                        </li>
+                        <li>
+                            <a href="#Booking History">Booking History</a>
+                        </li>
+                    </ul>
+                </nav> -->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light py-0">
+
+                    <div class=" navbar-collapse " id="navbarSupportedContent">
+                        <ul class="navbar-nav w-100 h5 p-1">
+                            <li class="nav-item active">
+                                <a " href="./Index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#What's On">Whats' On</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#Upcoming">Upcoming</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#Category">Category</a>
+                            </li>
+                            <li class="nav-item">
+                                <a  href="#Contact Us">Contact Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a  href="./Create an event.html">Create an Event</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./Booking History.html">Booking History</a>
+                            </li>
+			<li>
+                            <a href="./signin.html">Sign In or Register</a>
+                        </li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </div>
+        </header>
+<body>
+
+<div class="main">
+
+    <!-- Sign up form -->
+    <section class="signup">
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-form">
+                    <h2 class="form-title">Sign up</h2>
+                    <form method="POST" class="register-form" action="/register" id="register-form">
+                        <div class="form-group">
+                            <label for="name"><i class='fas fa-user' style='font-size:14px'></i></label>
+                            <input type="text" name="name" id="name" placeholder="Your Name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><i class='fas fa-envelope' style='font-size:14px'></i></label>
+                            <input type="email" name="email" id="email" placeholder="Your Email" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact"><i class='fas fa-phone' style='font-size:14px'></i></label>
+                            <input type="tel" name="contact" id="contact" placeholder="Contact Number" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="address"><i class='fas fa-address-book' style='font-size:14px'></i></label>
+                            <input type="text" name="address" id="address" placeholder="Address" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass"><i class='fas fa-lock' style='font-size:14px'></i></label>
+                            <input type="password" name="password" id="pass" placeholder="Password" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="re-pass"><i class='fas fa-lock' style='font-size:14px'></i></label>
+                            <input type="password" name="c_password" id="re_pass" placeholder="Repeat your password" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" required />
+                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                        </div>
+                        <div class="form-group form-button">
+                            <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="signup-image">
+                    <figure><img src="{{ url_for('static', filename='./registration.jpg') }}" alt="sign up image"></figure>
+                    <a href="./signin.html" class="signup-image-link">I am already member</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="{{ url_for('static', filename='js/jquery.registration.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main_form.js') }}"></script>
+</body>
+</html>
