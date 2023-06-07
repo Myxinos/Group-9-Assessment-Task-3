@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Sign In</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Font Icon -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='fonts/material-icon/css/material-design-iconic-font.min.css') }}">
+
+        <!-- Main css -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style_form.css') }}">
+
+        <script src="https://kit.fontawesome.com/118a03026f.js" crossorigin="anonymous"></script>
+    </head>
+
+   <div id="wrapper">
+        <!-- Contains the heading, navigation and banner image -->
+        <header>
+            <div id="navigationbar">
+                <div id="websitename">
+                    <h1 style="margin: 0;padding: 1rem 0; text-align: center;font-size: 100px;">ALL FOR MUSIC</h1>
+                </div>
+                <!-- <nav id="navigationmenu">
+                    <ul id="navigationlist">
+                        <li class="active">
+                            <a href="#Home">Home</a>
+                        </li>
+                        <li>
+                            <a href="#What's On">What's On</a>
+                        </li>
+                        <li>
+                            <a href="#Upcoming">Upcoming</a>
+                        </li>
+                        <li>
+                            <a href="#Category">Category</a>
+                        </li>
+                        <li>
+                            <a href="#Contact Us">Contact Us</a>
+                        </li>
+                        <li>
+                            <a href="#Create an Event">Create an Event</a>
+                        </li>
+                        <li>
+                            <a href="#Booking History">Booking History</a>
+                        </li>
+                    </ul>
+                </nav> -->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light py-0">
+
+                    <div class=" navbar-collapse " id="navbarSupportedContent">
+                        <ul class="navbar-nav w-100 h5 p-1">
+                            <li class="nav-item active">
+                                <a " href="./Index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#What's On">Whats' On</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#Upcoming">Upcoming</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#Category">Category</a>
+                            </li>
+                            <li class="nav-item">
+                                <a  href="#Contact Us">Contact Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a  href="./Create an event.html">Create an Event</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./Booking History.html">Booking History</a>
+                            </li>
+			<li>
+                            <a href="./signin.html">Sign In or Register</a>
+                        </li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+<body>
+<div class="main" >
+    <!-- Sign in  Form -->
+ 
+    <section class="sign-in">
+        <div class="container">
+            {% if status=="datasaved" %}
+            <div class="alert alert-success col-8 m-auto text-cente" role="alert">
+               Registered Successfully !!!
+              </div>
+            {% endif %}
+            {% if status=="Login" %}
+            <div class="alert alert-success col-8 m-auto text-cente" role="alert">
+                Login Succesfully !!!
+              </div>
+            {% endif %}
+            {% if status=="wrong" %}
+            <div class="alert alert-danger col-8 m-auto text-cente" role="alert">
+               Incorrect username or password !!!
+              </div>
+            {% endif %}
+
+            <div class="signin-content">
+                <div class="signin-image">
+                    <figure><img src="{{ url_for('static', filename='signin.png') }}" alt="sign up image"></figure>
+                    <a href="./event_register.html" class="signup-image-link">Create an account</a>
+                </div>
+                
+
+                <div class="signin-form">
+                    <h2 class="form-title">Sign up</h2>
+                    <form method="POST" class="register-form" id="login-form"action="/signin">
+                        <div class="form-group">
+                            <label for="your_email"><i class='fas fa-envelope' style='font-size:14px'></i></label>
+                            <input type="email" name="email" id="your_email" placeholder="email" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="your_pass"><i class='fas fa-lock' style='font-size:14px'></i></label>
+                            <input type="password" name="password" id="your_pass" placeholder="Password" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                            <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                        </div>
+                        <div class="form-group form-button">
+                            <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                        </div>
+                    </form>
+                    <div class="social-login">
+                        <span class="social-label">Or login with</span>
+                        <ul class="socials">
+                            <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                            <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+                            <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/jquery.registration.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main_form.js') }}"></script>
+</body>
+</html>
