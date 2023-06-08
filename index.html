@@ -6,6 +6,18 @@
 {% block content %}
 
     <main>
+        <form action="{{ url_for('bp.search_event') }}" method="get" class="mb-4">
+                {{ form.csrf_token }}
+                <div class="form-row align-items-center">
+                    <div class="col-sm-9">
+                        {{ render_field(form.keyword, class="form-control form-control-lg", placeholder="Search event...") }}
+                    </div>
+                    <div class="col-auto">
+                        {{ render_field(form.submit, class="btn btn-primary btn-lg") }}
+                    </div>
+                </div>
+            </form>
+        
         <section id="What's On" class="whatson">
 
             {% if events|length > 0 %}
@@ -38,22 +50,88 @@
 
 
         </section>
+        
+        <section id="Upcoming" class="upcoming">
+                <div class="upcoming-heading">
+                    <h1>Upcoming</h1>
+                </div>
+                <div class="row">
+                    {% for concert in concerts %}
+                    {% if concert.startTime > current_time %}
+                    <div class="col-md-4">
+                        <article class="whatson-event">
+                            <a href="./event_detail.html" style="text-decoration: none;">
+                                <img src="{{ concert.eventImage }}" alt="Concert Image" style="width:400px;height:300px;">
+                            </a>
+                            <div>
+                                <h3>
+                                    <a href="./event_detail.html" style="text-decoration: none;">{{ concert.eventName }}</a>
+                                </h3>
+                                <p><i>Coming Soon</i></p>
+                                <a href="./book_event.html" class="btn btn-primary">Get A Ticket</a>
+                                <p style="color:red;"><b>{{ concert.location }}</b></p>
+                            </div>
+                        </article>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
+        
+        <section id="Category" class="category">
+                <div class="category-heading">
+                    <h1>Category</h1>
+                </div>
+
+                <a href="{{ url_for('bp.category', category_name='Classical') }}">
+                <article class="whatson-event">
+                    <img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*mixpt3aTomNCPC2-cBlmIw.jpeg"
+                        alt="Classical" style="width:400px;height:300px;">
+                    <div>
+                        <h3>Classical</h3>
+                        <p>
+                        </p>
+                    </div>
+                </article>
+
+                <a href="{{ url_for('bp.category', category_name='Rock') }}"></a>
+                <article class="whatson-event">
+                    <img src="https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                        alt="Rock " style=" width:400px;height:300px;">
+                    <div>
+                        <h3>Rock</h3>
+                        <p></p>
+                    </div>
+                </article>
+
+                <a href="{{ url_for('bp.category', category_name='Electronic') }}"></a>
+                <article class="whatson-event">
+                    <img src="https://spillmagazine.com/wp-content/uploads/2018/06/Electronic-Music.jpg"
+                        alt="Electronic" style="width:400px;height:300px;">
+                    <div>
+                        <h3>Electronic</h3>
+                        <p></p>
+                    </div>
+                </article>
+
+            </section>
 
 
         <section id="Contact Us" class="contactus">
 
-            <div class="contactus-heading">
-                <h1>Contact Us</h1>
-            </div>
-
-            <article>
-                <img src="https://play.tennis.com.au/Library/redheadtennisclub?command=Proxy&lang=en&type=Images&currentFolder=%2Fcoaching%2F&hash=665b8e01e64a6961a689712a1550ea064f49e224&fileName=contact-us-1908762__340.png"
-                     alt="Contact Us" style="width:400px;height:300px;">
-                <div>
-
+                <div class="contactus-heading">
+                    <h1>Contact Us</h1>
+                    {{wtf.quick_form(contact_form,action=url_for('main.create_contact'))}}
                 </div>
-            </article>
-        </section>
+
+                <article>
+                    <img src="https://play.tennis.com.au/Library/redheadtennisclub?command=Proxy&lang=en&type=Images&currentFolder=%2Fcoaching%2F&hash=665b8e01e64a6961a689712a1550ea064f49e224&fileName=contact-us-1908762__340.png"
+                            alt="Contact Us" style="width:400px;height:300px;">
+                    <div>
+    
+                    </div>
+                </article>
+            </section>
     </main>
 
 
