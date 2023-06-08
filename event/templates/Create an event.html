@@ -62,6 +62,9 @@
     </header>
 </div>
 
+
+
+
 <main>
     <section id="Create An Event" class="createanevent">
 
@@ -176,6 +179,25 @@
                 </div>
             </div>
         </form>
+
+        <script type="text/javascript">
+            (function() {
+              if (!window.mc4wp) {
+                window.mc4wp = {
+                  listeners: [],
+                  forms: {
+                    on: function(event, callback) {
+                      window.mc4wp.listeners.push({
+                        event: event,
+                        callback: callback
+                      });
+                    }
+                  }
+                }
+              }
+            })();
+          </script>
+
 
     </section>
         <section id="Contact Us" class="contactus">
