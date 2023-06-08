@@ -1,14 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
 {% extends 'Base.html' %}
 {% block content %}
 <body>
 
-<h1>{{ category }}</h1>
-
+<section id="Category" class="category">
+    <div class="category-heading">
+        <h1>Category</h1>
+    </div>
+    <div class="row">
+        {% for concert in concerts %}
+        <div class="col-md-4">
+            <article class="whatson-event">
+                <a href="./event_detail.html" style="text-decoration: none;">
+                    <img src="{{ concert.eventImage }}" alt="Concert Image" style="width:400px;height:300px;">
+                </a>
+                <div>
+                    <h3 style="font-size:150%;">
+                        <a href="./event_detail.html" style="text-decoration: none;">{{ concert.eventName }}</a>
+                    </h3>
+                    <p><i>{{ concert.eventDate }}</i></p>
+                    <p style="color:red;"><b>{{ concert.location }}</b></p>
+                    <p>{{ concert.category }}</p> 
+                    <p>{{ concert.status }}</p>
+                </div>
+            </article>
+        </div>
+        {% endfor %}
+    </div>
+</section>
 
 
 </body>
 {% endblock %}
-
-</html>
