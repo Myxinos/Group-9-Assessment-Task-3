@@ -31,3 +31,8 @@ SELECT * FROM events;
 DELETE FROM events WHERE Event_ID=''; 
 
 DROP TABLE events;
+
+CREATE TABLE IF NOT EXISTS events (
+	
+	Booking_ID 
+);
