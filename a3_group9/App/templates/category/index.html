@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Category{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="/static/css/Index.css">
+{% endblock %}
+{% block content %}
+
+    <main>
+        <section id="What's On" class="whatson">
+
+            {% if events|length > 0 %}
+
+                <div class="whatson-heading">
+                    <h1>{{ category }}</h1>
+
+                </div>
+
+                {% for event in events %}
+                    <article class="whatson-event">
+                        <a href="/index/event/detail.html?id={{ event.id }}" style="text-decoration: none;">
+                            <img src="/static/uploads/image/{{ event.eventImage }}"
+                                 alt="Adele" style="width:400px;height:300px;">
+                        </a>
+                        <div>
+                            <h3 style="font-size:150%;">
+                                <a href="/index/event/detail.html?id={{ event.id }}"
+                                   style="text-decoration: none;">{{ event.eventName }}</a>
+                            </h3>
+                            <p><i>{{ event.eventDate }}, at {{ timeZone }}</i></p>
+                            <p style="color:red;"><b>{{ event.location }}</b></p>
+                            <p>Open</p>
+                        </div>
+
+                    </article>
+                {% endfor %}
+
+            {% endif %}
+
+
+        </section>
+
+
+        <section id="Contact Us" class="contactus">
+
+            <div class="contactus-heading">
+                <h1>Contact Us</h1>
+            </div>
+
+            <article>
+                <img src="https://play.tennis.com.au/Library/redheadtennisclub?command=Proxy&lang=en&type=Images&currentFolder=%2Fcoaching%2F&hash=665b8e01e64a6961a689712a1550ea064f49e224&fileName=contact-us-1908762__340.png"
+                     alt="Contact Us" style="width:400px;height:300px;">
+                <div>
+
+                </div>
+            </article>
+        </section>
+    </main>
+
+
+{% endblock %}
+

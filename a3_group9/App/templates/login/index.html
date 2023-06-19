@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/css/EventDetail.css">
+    <style>
+        #wrapper {
+            margin: auto;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        nav ul li {
+            float: left;
+        }
+
+        nav li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .whatson,
+        .category,
+        .upcoming,
+        .contactus {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+
+        .whatson-heading,
+        .category-heading,
+        .upcoming-heading,
+        .contactus-heading {
+            position: absolute;
+            margin-top: 0;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+
+    <main>
+
+        <div class="details-container my-3 px-5 row">
+            <div class="details card p-3 col-12">
+                <h4>Login</h4>
+                <div>
+
+                    <div class="px-3">
+                        <form class="form-horizontal" id="my-form" action="/index/login/check" method="POST">
+                            {{ form.csrf_token }}
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
+                                <div class="col-sm-10">
+                                    <!-- <input type="text" class="form-control" id="username" name="username"
+                                           placeholder="" required> -->
+                                    {{  form.username }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                                <div class="col-sm-10">
+                                    <!-- <input type="password" name="password" class="form-control" id="inputPassword3"
+                                           placeholder="" required> -->
+                                           {{  form.password }}
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 20px;">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <!-- <button type="submit" class="btn btn-primary w-25 login">Login</button> -->
+                                    {{  form.submit }}
+                                </div>
+                                <p style="margin-top: 20px;"><a href="/index/register/index.html">No account? Register
+                                    Now</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <section id="Contact Us" class="contactus">
+            <div class="contactus-heading">
+                <h1>Contact Us</h1>
+            </div>
+            <article>
+                <img
+                        src="https://play.tennis.com.au/Library/redheadtennisclub?command=Proxy&lang=en&type=Images&currentFolder=%2Fcoaching%2F&hash=665b8e01e64a6961a689712a1550ea064f49e224&fileName=contact-us-1908762__340.png"
+                        alt="Contact Us" style="width:400px;height:300px;object-fit: contain;">
+                <div>
+                </div>
+            </article>
+        </section>
+
+    </main>
+
+
+{% endblock %}
+

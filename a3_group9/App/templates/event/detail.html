@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% block title %}CreateAnEvent{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/css/EventDetail.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+          integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous"/>
+    <style>
+        #wrapper {
+            margin: auto;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        nav ul li {
+            float: left;
+        }
+
+        nav li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .whatson,
+        .category,
+        .upcoming,
+        .contactus {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+
+        .whatson-heading,
+        .category-heading,
+        .upcoming-heading,
+        .contactus-heading {
+            position: absolute;
+            margin-top: 0;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+
+    <main>
+        <div class="bg-container my-3 px-5">
+            <div class="bg-image" style="background-image: url(/static/uploads/image/{{ info.eventImage }});"></div>
+            <div class="bg-text">
+                <h1>{{ info.eventName }}</h1>
+            </div>
+        </div>
+        <div class="details-container my-3 px-5 row">
+            <div class="details card p-3 col-8">
+                <h3 class="text-dark font-weight-bold">
+                    {{ info.eventName }}
+                </h3>
+                <p>
+                    {{ info.eventDate }}
+                </p>
+                <br/>
+                <small>{{ info.eventOrganizer }}</small>
+                <br/>
+                <h4 class="font-weight-bold">When and Where</h4>
+                <div class="d-flex">
+                    <div class="me-3 w-50">
+                        <i class="bi bi-calendar-event me-3"></i>
+                        <small>{{ info.eventDate }} {{ info.startTime }} PM - {{ info.endTime }} PM AEST</small>
+                    </div>
+                    <div>
+                        <i class="bi bi-geo-alt me-3"></i>
+                        <small>{{ info.location }}</small>
+                    </div>
+                </div>
+                <br/>
+                <h4>Event Details</h4>
+                <p>
+                    {{ info.content }}
+                </p>
+                <br/>
+                <h4>Comments</h4>
+                <div>
+                    <ul class="commentList">
+                        {% for comment in comments %}
+                            <li>
+                                <div class="commenterImage d-inline">
+                                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"/>
+                                    <small>{{ comment.user }}</small>
+                                </div>
+                                <div class="commentText d-inline">
+                                    <p class="">{{ comment.content }}</p>
+                                    <span class="date sub-text">{{ comment.addtime }}</span>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="px-3">
+                        <form action="/index/event/saveComment" method="post">
+                            {{ commentform.csrf_token }}
+                            <!-- <input class="d-none" type="text" name="concert_id" id="" value="{{info.id}}" required> -->
+                            {{ commentform.concert_id(value=info.id) }}
+                            <!-- <textarea ncols="300" rows="5" name="content" id="content" class="form-control mb-3" required></textarea> -->
+                            {{ commentform.content }}
+                            <div class="row justify-content-end">
+                                <!-- <button class="btn btn-primary w-25 save-comment" type="submit">Post a comment</button> -->
+                                {{ commentform.submit }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="booking card p-3 col-4">
+                <h3>Booking</h3>
+                <!-- data: {totalPrice: Subtotal, concert_id: concert_id, number: number, price: price}, -->
+                <form action="/index/event/book.html" method="post">
+                <div class="card h-50 mb-3 p-3" style="border-color: lightblue !important; border-width: 3px">
+                    <p class="d-flex justify-content-between">
+                        <span>General Admission</span>
+                        <span>
+                            <i class="bi bi-dash-circle mx-1 sub"></i>
+                            <span id="number">1</span>
+                            <i class="bi bi-plus-circle-fill mx-1 add"></i>
+                        </span>
+                    </p>
+                    <p><span>Price: ${{ info.price }}/pp</span></p>
+                    <p><span id="Subtotal">Subtotal: ${{ info.price }}</span></p>
+                </div>
+                <button class="btn btn-danger book" type="submit">Book Event</button>
+            </form>
+            </div>
+
+        </div>
+        </div>
+
+        <section id="Contact Us" class="contactus">
+            <div class="contactus-heading">
+                <h1>Contact Us</h1>
+            </div>
+            <article>
+                <img
+                        src="https://play.tennis.com.au/Library/redheadtennisclub?command=Proxy&lang=en&type=Images&currentFolder=%2Fcoaching%2F&hash=665b8e01e64a6961a689712a1550ea064f49e224&fileName=contact-us-1908762__340.png"
+                        alt="Contact Us" style="width:400px;height:300px;object-fit: contain;">
+                <div>
+                </div>
+            </article>
+        </section>
+
+    </main>
+
+
+{% endblock %}
+
+
+{% block js %}
+
+    <script>
+        var concert_id = {{ info.id }};
+        var price = {{ info.price }};
+
+        $(".sub").click(function () {
+            var number = parseInt($("#number").html()) - 1;
+            if (number <= 0) {
+                number = 1;
+                $("#number").html(number);
+            } else {
+                $("#number").html(number);
+            }
+
+            var Subtotal = number * price;
+            Subtotal = Subtotal.toFixed(2);
+
+            $("#Subtotal").html('Subtotal: ' + Subtotal)
+
+
+        })
+
+        $(".add").click(function () {
+            var number = parseInt($("#number").html()) + 1;
+            $("#number").html(number)
+            var Subtotal = number * price;
+            Subtotal = Subtotal.toFixed(2);
+
+            $("#Subtotal").html('Subtotal: ' + Subtotal)
+        })
+
+
+        $(".book").click(function () {
+            var number = parseInt($("#number").html());
+            var Subtotal = number * price;
+            Subtotal = Subtotal.toFixed(2);
+
+            $.ajax({
+                url: "/index/event/book.html",
+                type: 'POST',
+                dataType: 'json',
+                data: {totalPrice: Subtotal, concert_id: concert_id, number: number, price: price},
+                success: function (res) {
+                    if (res.state == 1) {
+                        layer.msg(res.msg, {time: 1000}, function () {
+                            location.reload();
+                        });
+                    } else {
+                        layer.msg(res.msg, {time: 1000}, function () {
+                        });
+                    }
+                },
+                error: function (res) {
+                    layer.msg('Please log in first before commenting', {time: 1000}, function () {
+                    });
+                }
+            });
+
+        })
+
+    </script>
+{% endblock %}
+

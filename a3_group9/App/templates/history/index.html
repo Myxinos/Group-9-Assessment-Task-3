@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}ALL FOR MUSIC{% endblock %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="/static/css/BookingHistory.css">
+
+{% endblock %}
+{% block content %}
+
+    <main>
+        <section id="Booking History" class="bookinghistory">
+
+            <div class="bookinghistory-heading">
+                <h1>Booking History</h1>
+                <div class="container">
+                    <div class="row">
+                        <div id="Booking History" class="bookinghistory col-6">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container">
+                {% for history in historys %}
+                    <div class="row justify-content-center">
+                        <div class="col-10 align-self-center">
+                            <a href="/index/event/detail.html?id={{ history.concert_id }}" style="color: #000;">
+                                <article class="whatson-event">
+                                    <img class="d-inline-block me-3"
+                                         src="/static/uploads/image/{{ history.eventImage }}"
+                                         alt="Adele" style="width:400px;height:300px;vertical-align: top;">
+                                    <div class="d-inline-block pt-3">
+                                        <h3 style="font-size:150%;">{{ history.eventName }}</h3>
+                                        <p><i>{{ history.eventDate }}, at {{ history.startTime }} AM
+                                            - {{ history.endTime }}</i></p>
+                                        <p style="color:red;"><b>{{ history.location }}</b></p>
+                                        <p>User : {{ history.user }}</p>
+                                        <p>Booking Date : {{ history.addtime }}</p>
+                                        <p>Total Price : {{ history.totalPrice }}</p>
+                                        <p>Event Date : {{ history.eventDate }} at {{ history.startTime }}
+                                            - {{ history.endTime }}</p>
+                                    </div>
+                                </article>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+
+        <section id="Contact Us" class="contactus">
+            <div class="contactus-heading">
+                <h1>Contact Us</h1>
+            </div>
+            <article>
+                <img src="https://play.tennis.com.au/Library/redheadtennisclub?command=Proxy&lang=en&type=Images&currentFolder=%2Fcoaching%2F&hash=665b8e01e64a6961a689712a1550ea064f49e224&fileName=contact-us-1908762__340.png"
+                     alt="Contact Us" style="width:400px;height:300px;object-fit: contain;">
+                <div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+
+{% endblock %}
+
