@@ -6,44 +6,44 @@
 {% block content %}
 
     <main>
-        <form action="{{ url_for('bp.search_event') }}" method="get" class="mb-4">
-                {{ form.csrf_token }}
+        <form action="{{ url_for('main.search_event') }}" method="get" class="mb-4">
+                {{ search_form.csrf_token }}
                 <div class="form-row align-items-center">
                     <div class="col-sm-9">
-                        {{ render_field(form.keyword, class="form-control form-control-lg", placeholder="Search event...") }}
+                        {{ search_form.keyword(class="form-control form-control-lg", placeholder="Search event...") }}
                     </div>
                     <div class="col-auto">
-                        {{ render_field(form.submit, class="btn btn-primary btn-lg") }}
+                        {{ search_form.submit(class="btn btn-primary btn-lg") }}
                     </div>
                 </div>
             </form>
         
         <section id="What's On" class="whatson">
 
-            {% if events|length > 0 %}
+            {% if concert|length > 0 %}
 
                 <div class="whatson-heading">
-                    <h1>{{ category }}</h1>
-
+                    <h1>What's on</h1>
                 </div>
 
-                {% for event in events %}
+                {% for concert in concert %}
+                <div class="col-md-4">
                     <article class="whatson-event">
-                        <a href="/index/event/detail.html?id={{ event.id }}" style="text-decoration: none;">
-                            <img src="/static/uploads/image/{{ event.eventImage }}"
-                                 alt="Adele" style="width:400px;height:300px;">
+                        <a href="./event_detail.html?id={{ concert.eventName }}" style="text-decoration: none;">
+                            <img class="card-img-top" src="{{'../static/pic/' + concert.eventImage }}" alt="Card image" style="width:400px;height:300px;">
                         </a>
                         <div>
                             <h3 style="font-size:150%;">
-                                <a href="/index/event/detail.html?id={{ event.id }}"
-                                   style="text-decoration: none;">{{ event.eventName }}</a>
+                                <a href="./event_detail.html?id={{ concert.eventName }}"
+                                   style="text-decoration: none;">{{ concert.eventName }}</a>
                             </h3>
-                            <p><i>{{ event.eventDate }}, at {{ timeZone }}</i></p>
-                            <p style="color:red;"><b>{{ event.location }}</b></p>
+                            <p><i>{{ concert.eventDate }}</i></p>
+                            <p style="color:red;"><b>{{ concert.location }}</b></p>
                             <p>Open</p>
                         </div>
 
                     </article>
+                </div>
                 {% endfor %}
 
             {% endif %}
@@ -56,24 +56,26 @@
                     <h1>Upcoming</h1>
                 </div>
                 <div class="row">
-                    {% for concert in concerts %}
-                    {% if concert.startTime > current_time %}
+                    {% for concert in concert %}
+                    
                     <div class="col-md-4">
                         <article class="whatson-event">
-                            <a href="./event_detail.html" style="text-decoration: none;">
-                                <img src="{{ concert.eventImage }}" alt="Concert Image" style="width:400px;height:300px;">
+                            <a href="./event_detail.html?id={{ concert.eventName }}" style="text-decoration: none;">
+                                <img class="card-img-top" src="{{'../static/pic/' + concert.eventImage }}" alt="Card image" style="width:400px;height:300px;">
                             </a>
                             <div>
                                 <h3>
-                                    <a href="./event_detail.html" style="text-decoration: none;">{{ concert.eventName }}</a>
+                                    <a href="./event_detail.html?id={{ concert.eventName }}" style="text-decoration: none;">{{ concert.eventName }}</a>
                                 </h3>
                                 <p><i>Coming Soon</i></p>
-                                <a href="./book_event.html" class="btn btn-primary">Get A Ticket</a>
+                                <a href="./book_event.html" class="btn btn-primary">{{ concert.eventName }}</a>
                                 <p style="color:red;"><b>{{ concert.location }}</b></p>
+                                <p>{{ concert.eventDate }}</p>
+                                <p>{{ concert.category }}</p>
                             </div>
                         </article>
                     </div>
-                    {% endif %}
+                    
                     {% endfor %}
                 </div>
             </section>
@@ -83,36 +85,35 @@
                     <h1>Category</h1>
                 </div>
 
-                <a href="{{ url_for('bp.category', category_name='Classical') }}">
+                <a href="{{ url_for('main.category', category_name='Classical') }}">
                 <article class="whatson-event">
                     <img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*mixpt3aTomNCPC2-cBlmIw.jpeg"
                         alt="Classical" style="width:400px;height:300px;">
                     <div>
                         <h3>Classical</h3>
-                        <p>
-                        </p>
                     </div>
                 </article>
+                </a>
 
-                <a href="{{ url_for('bp.category', category_name='Rock') }}"></a>
+                <a href="{{ url_for('main.category', category_name='Rock') }}">
                 <article class="whatson-event">
                     <img src="https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                         alt="Rock " style=" width:400px;height:300px;">
                     <div>
                         <h3>Rock</h3>
-                        <p></p>
                     </div>
                 </article>
+                </a>
 
-                <a href="{{ url_for('bp.category', category_name='Electronic') }}"></a>
+                <a href="{{ url_for('main.category', category_name='Pop') }}">
                 <article class="whatson-event">
                     <img src="https://spillmagazine.com/wp-content/uploads/2018/06/Electronic-Music.jpg"
-                        alt="Electronic" style="width:400px;height:300px;">
+                        alt="Pop" style="width:400px;height:300px;">
                     <div>
-                        <h3>Electronic</h3>
-                        <p></p>
+                        <h3>Pop</h3>
                     </div>
                 </article>
+                </a>
 
             </section>
 
@@ -121,19 +122,16 @@
 
                 <div class="contactus-heading">
                     <h1>Contact Us</h1>
-                    {{wtf.quick_form(contact_form,action=url_for('main.create_contact'))}}
                 </div>
 
                 <article>
+                    <a href="mailto:allformusic@outlook.com">
                     <img src="https://play.tennis.com.au/Library/redheadtennisclub?command=Proxy&lang=en&type=Images&currentFolder=%2Fcoaching%2F&hash=665b8e01e64a6961a689712a1550ea064f49e224&fileName=contact-us-1908762__340.png"
                             alt="Contact Us" style="width:400px;height:300px;">
-                    <div>
-    
-                    </div>
+                    </a>
                 </article>
             </section>
     </main>
 
 
 {% endblock %}
-
